@@ -20,17 +20,27 @@ public class Lc121 {
      * @return
      */
     public int maxProfit(int[] prices) {
-        int j = 0;
-        int max = 0;
-        for(int i = 1; i < prices.length; ++i) {
-            if(prices[i] < prices[j]) {
-                j = i;
-            } else {
-                int tmp = prices[i] - prices[j];
-                max = tmp > max ? tmp : max;
-            }
+//        這個解法沒有使用語法糖是直接使用原生的代碼進行編寫的操作
+//        int j = 0;
+//        int max = 0;
+//        for(int i = 1; i < prices.length; ++i) {
+//            if(prices[i] < prices[j]) {
+//                j = i;
+//            } else {
+//                int tmp = prices[i] - prices[j];
+//                max = tmp > max ? tmp : max;
+//            }
+//        }
+//        return max;
+
+//        使用語法糖以及封裝好的api進行操作
+        int minprice = prices[0];
+        int ans = 0;
+        for(int price: prices) {
+            ans = Math.max(ans, price - minprice);
+            minprice = Math.min(minprice, price - minprice);
         }
-        return max;
+        return ans;
     }
     public static void main(String[] args) {
         Lc121 solution = new Lc121();
