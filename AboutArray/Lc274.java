@@ -1,5 +1,6 @@
+package AboutArray;
+
 import java.util.Arrays;
-import java.util.concurrent.RecursiveAction;
 
 /**
  * @author Caius

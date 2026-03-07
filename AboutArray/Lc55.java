@@ -1,3 +1,5 @@
+package AboutArray;
+
 /**
  * @author Caius
  * @description LC 55 跳跃游戏
