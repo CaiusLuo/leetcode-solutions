@@ -26,8 +26,8 @@ public class Lc6 {
     /**
      * ans = PAHNAPLSIIGYIR
      */
-//    private String s = "PAYPALISHIRING";
-//    private int numRows = 3;
+    private String s = "PAYPALISHIRING";
+    private int numRows = 3;
 
     /**
      * ans = PINALSIGYAHRPI
@@ -37,8 +37,8 @@ public class Lc6 {
     /**
      * ans = A
      */
-    private String s = "A";
-    private int numRows = 1;
+//    private String s = "A";
+//    private int numRows = 1;
 
     /**
      * 实现 Z 字型变换【模拟实现】
@@ -48,26 +48,26 @@ public class Lc6 {
      */
     public String convert(String s, int numRows) {
         if(numRows == 1) return s;
-        List<StringBuilder> rows = new ArrayList<StringBuilder>();
+
+        List<StringBuilder> rows = new ArrayList<>();
 
         for(int i = 0; i < numRows; i++) {
             rows.add(new StringBuilder());
         }
 
-        int direction = 1;
         int row = 0;
-
+        int diracation = 1;
         for(char c : s.toCharArray()) {
+//            添加元素到数组中间
             rows.get(row).append(c);
-
-            if(row == 0) direction = 1;
-            else if(row == numRows - 1) direction = -1;
-
-            row += direction;
+//            定移动方向
+            if(row == 0) diracation = 1;
+            if(row == numRows - 1) diracation = -1;
+            row += diracation;
         }
 
         StringBuilder ans = new StringBuilder();
-        for(StringBuilder sb: rows){
+        for(StringBuilder sb : rows) {
             ans.append(sb);
         }
 
