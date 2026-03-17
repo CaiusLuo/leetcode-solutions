@@ -44,6 +44,7 @@ public class Lc36 {
                 // 转换坐标位置
                 int x = board[i][j] - '1';
                 if(row[i][x] || clo[j][x] || charHas[i / 3][j / 3][x]) return false;
+                // 修改状态
                 row[i][x] = clo[j][x] = charHas[i / 3][j / 3][x] = true;
             }
         }
