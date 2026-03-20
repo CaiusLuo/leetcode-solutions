@@ -23,7 +23,7 @@ public class Lc49 {
         for(String str : strs) {
             char[] chars = str.toCharArray();
             Arrays.sort(chars);
-            map.computeIfAbsent(new String(chars), _ -> new ArrayList<>()).add(str);
+            map.computeIfAbsent(new String(chars), k -> new ArrayList<>()).add(str);
         }
 
         return new ArrayList<>(map.values());
