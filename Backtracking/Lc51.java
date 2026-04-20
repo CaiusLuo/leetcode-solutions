@@ -20,20 +20,44 @@ public class Lc51 {
     private static boolean[] useCol;
     private static boolean[] useDiag1;
     private static boolean[] useDiag2;
+    private static List<List<String>> res = new ArrayList<>();
     public static List<List<String>> solveNQueens(int n) {
         useCol = new boolean[n];
         useDiag1 = new boolean[2 * n];
         useDiag2 = new boolean[2 * n];
-
         char[][] grid = new char[n][n];
         Arrays.stream(grid).forEach(row -> Arrays.fill(row, '.'));
-
-        backTracking(grid, 0);
+        backTracking(grid, 0, n);
+        return res;
     }
-    private static void backTracking(char[][] grid, int row, int n)
+    private static void backTracking(char[][] grid, int row, int n){
+        if(row == n) {
+            List<String> cur = new ArrayList<>();
+            for(char[] g: grid) cur.add(new String(g));
+            res.add(cur);
+            return;
+        }
+
+        for(int col = 0; col < n; ++col) {
+            if(useCol[col]) continue;
+            int d1 = row - col + n;
+            int d2 = row + col;
+            if(!useDiag1[d1] && !useDiag2[d2]) {
+                useCol[col] = useDiag1[d1] = useDiag2[d2] = true;
+                grid[row][col] = 'Q';
+                backTracking(grid, row + 1, n);
+                grid[row][col] = '.';
+                useCol[col] = useDiag1[d1] = useDiag2[d2] = false;
+            }
+        }
+    }
 
 
     public static void main(String[] args) {
-
+        List<List<String>> ans = solveNQueens(4);
+        ans.forEach(row -> {
+            row.forEach(System.out::println);
+            System.out.println();
+        });
     }
 }
