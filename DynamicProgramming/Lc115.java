@@ -20,8 +20,10 @@ public class Lc115 {
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= m; j++) {
+                // 使用 | 不使用 的叠加
                 if(s.charAt(i - 1) == t.charAt(j - 1)) dp[i][j] = dp[i - 1][j] + dp[i - 1][j - 1];
-                else dp[i][j] = dp[i - 1][j - 1];
+                // 不使用 跳过当前的叠加
+                else dp[i][j] = dp[i - 1][j];
             }
         }
         return (int)dp[n][m];
