@@ -53,9 +53,31 @@ public class Lc122 {
         }
         return maxProfit;
     }
+
+    /**
+     * 使用 股票状态实现求解
+     * @param prices
+     * @return
+     */
+    public static int maxProfit1(int[] prices) {
+        // 初始化 持有 ｜ 不持有 状态
+        int hold = -prices[0];
+        int nothold = 0;
+
+        for(int i = 1; i < prices.length; i++) {
+            // 转移前一个状态 避免影响后面的处理逻辑
+            int preHold = hold;
+            int preNothold = nothold;
+            // 持有 ｜ 不持有 -- 状态转移【保持｜不保持】
+            hold = Math.max(preNothold - prices[i], preHold);
+            nothold = Math.max(preNothold , prices[i] + preHold);
+        }
+        return nothold;
+    }
+
     public static void main(String[] args) {
         Lc122 solution = new Lc122();
-        int ans = solution.maxProfit(solution.prices);
+        int ans = solution.maxProfit1(solution.prices);
         System.out.println(ans);
     }
 }
