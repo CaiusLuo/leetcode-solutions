@@ -9,7 +9,7 @@ import java.util.Map;
  * @since Created in 2026-03-09
  */
 public class Lc3 {
-    private String s = "pwwkew";
+    private String s = "abba";
 
     public int lengthOfLongestSubstring(String s) {
         int left = 0;
