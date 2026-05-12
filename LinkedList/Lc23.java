@@ -1,5 +1,7 @@
 package LinkedList;
 
+import java.util.PriorityQueue;
+
 /**
  * @author Caius
  * @description Lc 23 合并 K 个升序链表
@@ -14,7 +16,6 @@ public class Lc23 {
     public static class ListNode {
         int val;
         ListNode next;
-        ListNode(){}
         ListNode(int val) {this.val = val;}
         ListNode(int val, ListNode next) {
             this.val = val;
@@ -23,9 +24,33 @@ public class Lc23 {
     }
 
     /**
-     * 二分起始函数
-     * @param lists
-     * @return
+     * 使用优先队列（最小堆）合并K个升序链表。
+     * 时间复杂度：O(N log K)，其中N为所有节点总数，K为链表数量。
+     * 空间复杂度：O(K)，用于存储优先队列中的K个节点。
+     * @param lists 链表数组
+     * @return 合并后的升序链表
+     */
+    public static ListNode mergeKLists1(ListNode[] lists) {
+        if(lists == null || lists.length == 0) return null;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b) -> Integer.compare(a.val, b.val));
+        for(ListNode node: lists) if(node != null) pq.offer(node);
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while(!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            cur.next = node;
+            if(node.next != null) pq.offer(node.next);
+            cur = cur.next;
+        }
+        return dummy.next;
+    }
+
+    /**
+     * 使用分治法递归地将K个升序链表合并为一个升序链表。
+     * 时间复杂度：O(N log K)，其中N为所有节点总数，K为链表数量。
+     * 空间复杂度：O(log K)，主要为递归栈空间。
+     * @param lists 链表数组
+     * @return 合并后的升序链表
      */
     public static ListNode mergeKLists(ListNode[] lists) {
         if(lists == null || lists.length == 0) return null;
@@ -85,7 +110,7 @@ public class Lc23 {
         ListNode[] lists = {list1, list2, list3};
 
         // 合并
-        ListNode result = mergeKLists(lists);
+        ListNode result = mergeKLists1(lists);
 
         // 打印结果
         System.out.print("合并结果: ");
