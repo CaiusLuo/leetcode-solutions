@@ -24,6 +24,8 @@ public class Lc28 {
 
     /**
      * 字符串匹配第一个下标
+     * kmp 匹配求解 一个指向开始 index
+     * 指针 j 判断是否一致进行跳跃
      * @param haystack
      * @param needle
      * @return
