@@ -6,9 +6,9 @@
 
 - 主要覆盖 LeetCode Hot 150 及常见高频题。
 - 代码以专题维度组织，而不是按题号单独建目录。
-- 大多数题解文件都可以直接在 IDEA 中运行 `main` 方法进行本地验证。
+- 部分题解文件提供 `main` 方法，便于本地快速验证思路。
 
-截至 2026-04-17，仓库中共包含 `137` 个 `.java` 文件。
+截至 2026-05-19，仓库中共包含 `179` 个 `.java` 文件。
 
 ## 仓库结构
 
@@ -21,6 +21,7 @@ leetcode-solutions/
 ├── BinarySearch/
 ├── BinaryTree/
 ├── BitwiseOperation/
+├── BreadthFirstSearch_bfs/
 ├── DivideConquer/
 ├── DoublePointer/
 ├── DynamicProgramming/
